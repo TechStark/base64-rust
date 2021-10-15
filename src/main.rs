@@ -5,7 +5,6 @@ use clap::{App, Arg};
 fn main() {
     let app = App::new("base64")
         .version("1.0")
-        .author("Wilson")
         .about("Encode/decode between base64 text and binary/text")
         .arg(
             Arg::new("decode_flag")
@@ -98,11 +97,16 @@ fn decode_base64<T: AsRef<[u8]>>(input: T, output_option: Option<&str>) {
                 write_to_file(filename, bytes.as_slice());
             } else {
                 // write to stdout
-                std::io::stdout().write_all(&bytes).unwrap();
+                match std::io::stdout().write_all(&bytes) {
+                    Ok(_) => {} // ok
+                    Err(e) => {
+                        eprintln!("{}", e);
+                    }
+                }
             }
         }
         Err(e) => {
-            println!("{}", e);
+            eprintln!("{}", e);
         }
     }
 }
