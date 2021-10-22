@@ -2,7 +2,7 @@
 base64 CLI implemented in rust
 
 # Usage
-`base64.exe --help`
+`base64 --help`
 ```
 base64 1.0
 
@@ -25,4 +25,5 @@ OPTIONS:
 ```
 
 # Download
-Download from [release page](https://github.com/TechStark/base64-rust/releases) or [download base64.exe](https://github.com/TechStark/base64-rust/releases/download/v1.0/base64.exe) directly.
+- Download from [release page](https://github.com/TechStark/base64-rust/releases)
+- Download [base64.exe for Windows](https://github.com/TechStark/base64-rust/releases/download/v1.0/base64.exe)
