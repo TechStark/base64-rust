@@ -11,7 +11,7 @@ Encode/decode between base64 text and binary/text
 USAGE:
     base64.exe [FLAGS] [OPTIONS] [text]
 
-ARGS:                                                          
+ARGS:
     <text>    UTF-8 text to encode; or base64 text to decode
 
 FLAGS:
