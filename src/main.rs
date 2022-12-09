@@ -1,16 +1,17 @@
 use std::io::{Read, Write};
 
-use clap::{App, Arg};
+use clap::{Arg, ArgAction, Command};
 
 fn main() {
-    let app = App::new("base64")
+    let app = Command::new("base64")
         .version("1.0")
-        .help("Encode/decode between base64 text and binary/text")
+        .about("Encode/decode between base64 text and binary/text")
         .arg(
-            Arg::new("decode_flag")
+            Arg::new("decode_mode")
                 .long("decode")
                 .short('d')
-                .help("Decode base64 text to UTF-8 text or bytes"),
+                .help("Decode base64 text to UTF-8 text or bytes")
+                .action(ArgAction::SetTrue),
         )
         .arg(
             Arg::new("text")
@@ -35,13 +36,13 @@ fn main() {
 
     let matches = app.get_matches();
 
-    let decode_flag = matches.occurrences_of("decode_flag");
+    let decode_mode = matches.get_flag("decode_mode");
 
-    let text_option = matches.value_of("text");
-    let input_option = matches.value_of("input");
-    let output_option = matches.value_of("output");
+    let text_option = matches.get_one::<String>("text").map(|s| s.as_str());
+    let input_option = matches.get_one::<String>("input").map(|s| s.as_str());
+    let output_option = matches.get_one::<String>("output").map(|s| s.as_str());
 
-    if decode_flag > 0 {
+    if decode_mode {
         //
         // DECODE from base64 text
         //
