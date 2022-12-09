@@ -5,16 +5,16 @@ use clap::{App, Arg};
 fn main() {
     let app = App::new("base64")
         .version("1.0")
-        .about("Encode/decode between base64 text and binary/text")
+        .help("Encode/decode between base64 text and binary/text")
         .arg(
             Arg::new("decode_flag")
                 .long("decode")
                 .short('d')
-                .about("Decode base64 text to UTF-8 text or bytes"),
+                .help("Decode base64 text to UTF-8 text or bytes"),
         )
         .arg(
             Arg::new("text")
-                .about("UTF-8 text to encode; or base64 text to decode")
+                .help("UTF-8 text to encode; or base64 text to decode")
                 .takes_value(true)
                 .index(1),
         )
@@ -22,14 +22,14 @@ fn main() {
             Arg::new("input")
                 .long("input")
                 .short('i')
-                .about("Read from file")
+                .help("Read from file")
                 .takes_value(true),
         )
         .arg(
             Arg::new("output")
                 .long("output")
                 .short('o')
-                .about("Write to file")
+                .help("Write to file")
                 .takes_value(true),
         );
 
