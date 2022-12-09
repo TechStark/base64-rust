@@ -7,4 +7,4 @@ edition = "2021"
 
 [dependencies]
 base64 = "0.13.1"
-clap = "3.2.23"
+clap = "4.0.29"

@@ -16,22 +16,19 @@ fn main() {
         .arg(
             Arg::new("text")
                 .help("UTF-8 text to encode; or base64 text to decode")
-                .takes_value(true)
                 .index(1),
         )
         .arg(
             Arg::new("input")
                 .long("input")
                 .short('i')
-                .help("Read from file")
-                .takes_value(true),
+                .help("Read from file"),
         )
         .arg(
             Arg::new("output")
                 .long("output")
                 .short('o')
-                .help("Write to file")
-                .takes_value(true),
+                .help("Write to file"),
         );
 
     let matches = app.get_matches();
