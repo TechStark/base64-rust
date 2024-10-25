@@ -1,10 +1,10 @@
 [package]
-name = "base64"
-version = "0.1.0"
+name = "base64-rust"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-base64 = "0.13.1"
-clap = "4.0.29"
+base64 = "0.22.1"
+clap = "4.5.20"

@@ -1,5 +1,6 @@
 use std::io::{Read, Write};
 
+use base64::{prelude::BASE64_STANDARD, Engine};
 use clap::{Arg, ArgAction, Command};
 
 fn main() {
@@ -77,7 +78,7 @@ fn main() {
 }
 
 fn encode_base64<T: AsRef<[u8]>>(input: T, output_option: Option<&str>) {
-    let b64_str = base64::encode(input);
+    let b64_str = BASE64_STANDARD.encode(input);
     if let Some(filename) = output_option {
         // write to file
         write_to_file(filename, b64_str.as_bytes());
@@ -88,7 +89,7 @@ fn encode_base64<T: AsRef<[u8]>>(input: T, output_option: Option<&str>) {
 }
 
 fn decode_base64<T: AsRef<[u8]>>(input: T, output_option: Option<&str>) {
-    match base64::decode(input) {
+    match BASE64_STANDARD.decode(input) {
         Ok(bytes) => {
             if let Some(filename) = output_option {
                 // write to file
