@@ -5,7 +5,7 @@ use clap::{Arg, ArgAction, Command};
 
 fn main() {
     let app = Command::new("base64")
-        .version("1.0")
+        .version("1.0.1")
         .about("Encode/decode between base64 text and binary/text")
         .arg(
             Arg::new("decode_mode")
