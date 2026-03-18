@@ -13,13 +13,16 @@ jobs:
         include:
           - os: macos-latest
             target: x86_64-apple-darwin
-            asset_name: b64-macos-x86_64
+            asset_name: b64-macos-x86_64.tar.gz
+            binary_name: b64
           - os: macos-latest
             target: aarch64-apple-darwin
-            asset_name: b64-macos-aarch64
+            asset_name: b64-macos-aarch64.tar.gz
+            binary_name: b64
           - os: windows-latest
             target: x86_64-pc-windows-msvc
-            asset_name: b64-windows-x86_64.exe
+            asset_name: b64-windows-x86_64.tar.gz
+            binary_name: b64.exe
 
     steps:
       - name: Checkout
@@ -33,13 +36,18 @@ jobs:
       - name: Build
         run: cargo build --release --target ${{ matrix.target }}
 
-      - name: Rename binary (macOS)
-        if: runner.os == 'macOS'
-        run: cp target/${{ matrix.target }}/release/b64 ${{ matrix.asset_name }}
+      - name: Package binary (macOS/Linux)
+        if: runner.os != 'Windows'
+        run: |
+          chmod +x target/${{ matrix.target }}/release/b64
+          cp target/${{ matrix.target }}/release/b64 b64
+          tar -czf ${{ matrix.asset_name }} b64
 
-      - name: Rename binary (Windows)
+      - name: Package binary (Windows)
         if: runner.os == 'Windows'
-        run: Copy-Item target/${{ matrix.target }}/release/b64.exe ${{ matrix.asset_name }}
+        run: |
+          Copy-Item target/${{ matrix.target }}/release/b64.exe b64.exe
+          tar -czf ${{ matrix.asset_name }} b64.exe
         shell: pwsh
 
       - name: Upload release asset
